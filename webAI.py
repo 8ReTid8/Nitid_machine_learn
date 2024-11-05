@@ -31,15 +31,14 @@ with cold2:
 with cold3:
     hourinput = st.number_input("Insert hour", min_value=0, max_value=23, step=1, format="%d")
 
- 
-monthinput-=1
 
-cols1, cols2, cols3 = st.columns(3)
+cols1, cols2 = st.columns(2)
 chart_data = pd.DataFrame({"x": [x_value], "y": [y_value]})
 with cols1:
     st.write(chart_data)
 with cols2:
-    st.write(dateinput,monthinput,hourinput)
+    st.markdown(f"<p style='font-size:21px'>Day: {dateinput} | Month: {monthinput} | Hour: {hourinput}</p>", unsafe_allow_html=True)
+
 st.vega_lite_chart(chart_data, {
     'width': 700, 
     'height': 600, 
@@ -66,5 +65,8 @@ match dateinput:
     case "saturday":
         dayinput=6
     
+if st.button("Predict",type="primary"):
+    st.write("Location :")
 
-st.write("Location :")
+
+    
